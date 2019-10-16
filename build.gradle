@@ -1,32 +1,20 @@
 plugins {
-    id 'play'
-    id 'idea'
+    id 'org.gradle.playframework' version '0.9'
 }
 
 def playVersion = "2.6.21"
 def scalaVersion = System.getProperty("scala.binary.version", /* default = */ "2.12")
 
-model {
-    components {
-        play {
-            platform play: playVersion, scala: scalaVersion, java: '1.8'
-            injectedRoutesGenerator = true
-
-            sources {
-                twirlTemplates {
-                    defaultImports = TwirlImports.SCALA
-                }
-            }
-        }
-    }
+play {
+    injectedRoutesGenerator = true
 }
 
 dependencies {
-    play "com.typesafe.play:play-guice_$scalaVersion:$playVersion"
-    play "com.typesafe.play:play-logback_$scalaVersion:$playVersion"
-    play "com.h2database:h2:1.4.197"
+    implementation "com.typesafe.play:play-guice_$scalaVersion:$playVersion"
+    implementation "com.typesafe.play:play-logback_$scalaVersion:$playVersion"
+    implementation "com.h2database:h2:1.4.197"
 
-    playTest "org.scalatestplus.play:scalatestplus-play_$scalaVersion:3.1.2"
+    testImplementation "org.scalatestplus.play:scalatestplus-play_$scalaVersion:3.1.2"
 }
 
 repositories {
