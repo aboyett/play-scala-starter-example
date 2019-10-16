@@ -1,5 +1,6 @@
 plugins {
     id 'org.gradle.playframework' version '0.9'
+    id 'com.google.cloud.tools.jib' version '1.6.1'
 }
 
 def playVersion = "2.6.21"
@@ -27,5 +28,11 @@ repositories {
         name "lightbend-ivy-release"
         url "https://repo.lightbend.com/lightbend/ivy-releases"
         layout "ivy"
+    }
+}
+
+jib {
+    container {
+        mainClass = "play.core.server.ProdServerStart"
     }
 }
